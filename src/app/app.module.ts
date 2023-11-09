@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
 import { PaginaLoginComponent } from './pagina-login/pagina-login.component';
 import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AboutComponent } from './about/about.component';
     MenuComponent,
     ReservacionesComponent,
     PaginaLoginComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
