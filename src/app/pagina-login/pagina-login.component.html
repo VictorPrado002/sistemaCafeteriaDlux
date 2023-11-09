@@ -1,1 +1,213 @@
-<p>pagina-login works!</p>
+
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div
+          class="card"
+          style="border-radius: 1rem; border: 5px solid #393f81;"
+        >
+          <div class="row g-0" *ngIf="!registro; else RegistroForm">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img
+                src="assets/images/fondo1.png"
+                alt="login form"
+                class="img-fluid"
+                style="border-radius: 1rem 0 0 1rem;"
+              />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form>
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <div class="col-md-4 imagenLogo">
+                      <img
+                        src="assets/images/logo.png"
+                        class="img-fluid rounded-start"
+                        alt="..."
+                      />
+                    </div>
+                    <span class="h1 fw-bold mb-0">Café D'lux</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                    Ingresa a tu cuenta
+                  </h5>
+
+                  <div class="form-outline mb-4">
+                    <input
+                      type="email"
+                      id="form2Example17"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="form2Example17"
+                      >Correo</label
+                    >
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                      type="password"
+                      id="form2Example27"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="form2Example27"
+                      >Password</label
+                    >
+                  </div>
+
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-dark btn-lg btn-block" type="button">
+                      Login
+                    </button>
+                  </div>
+
+                  <a class="small text-muted" href="#!"
+                    >¿Olvidaste tu contraseña?</a
+                  >
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">
+                    ¿No tienes una cuenta?
+                    <button
+                      id="btnRegistro"
+                      style="color: #393f81;"
+                      type="button"
+                      (click)="iniciarRegistro()"
+                    >
+                      Registrate aquí
+                    </button>
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+          <ng-template #RegistroForm>
+            <div class="card-body py-5 px-md-5" id="divRegistro">
+              <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                  <h2 class="fw-bold mb-5" id="tituloRegistro" >Registro para Clientes</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <input
+                            type="text"
+                            id="form3Example1"
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example1"
+                            >Nombre(s)</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <input
+                            type="text"
+                            id="form3Example2"
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example2"
+                            >Apellido Paterno</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                          <input
+                            type="text"
+                            id="form3Example2"
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example2"
+                            >Apellido Materno</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input
+                            type="text"
+                            id="form3Example1"
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example1"
+                            >Dirección</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input
+                            type="number"
+                            id="form3Example2"
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example2"
+                            >Telefono</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input
+                        type="email"
+                        id="form3Example3"
+                        class="form-control"
+                      />
+                      <label class="form-label" for="form3Example3"
+                        >Correo</label
+                      >
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="form3Example4"
+                        class="form-control"
+                      />
+                      <label class="form-label" for="form3Example4"
+                        >Password</label
+                      >
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mx-auto">
+                            <div class="d-grid gap-2">
+
+                                <button
+                                type="submit"
+                                class="btn btn-primary btn-lg "
+                                >
+                                Registrarse
+                            </button>
+                        </div>
+                          </div>
+                          
+                          <div class="col-md-6 mb-4">
+                                  <div class="d-grid gap-2">
+                                  <button 
+                                  type="submit"
+                                  class="btn btn-dark btn-lg "
+                                  >
+                                  Login
+                                </button>
+                            </div>
+                      </div>
+                    </div>
+
+                    
+                   
+                  </form>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
