@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+
+body {
+    background-image: url('src/assets/images/fondocafe.jpg');
+    background-size: cover; /* Ajusta la imagen al tamaño de la ventana del navegador */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+}
+
+.container {
+    column-count: 2;
+}
+
+/* Estilos opcionales para cada columna */
+.column {
+    break-inside: avoid; /* Evita que los elementos se dividan entre columnas */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Agbalumo;
+
+}
+h2{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Agbalumo;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 30px 10px 10px;
+    background: url('https://cdn.jsdelivr.net/npm/outline-icons@0.31.0/icons/chevron-down.svg') no-repeat right #fff;
+    background-size: 20px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

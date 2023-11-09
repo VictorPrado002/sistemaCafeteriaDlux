@@ -1,1 +1,80 @@
-<p>reservaciones works!</p>
+<h1 class="animate__bounceInDown">Reservaciones</h1>
+<h2 class="nota">Para crear una reservacion primero debes tener una cuenta</h2>
+<div class="container">
+    <form (ngSubmit)="submitReservation()" #reservationForm="ngForm">
+        <div>
+            <label for="nombre">Nombre del cliente:</label>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="reservation.nombre" required>
+        </div>
+
+        <div>
+            <label for="telefono">Número de teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" [(ngModel)]="reservation.telefono" required>
+        </div>
+
+        <div>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="reservation.email" required>
+        </div>
+
+        <div>
+            <label for="fecha">Fecha de la reserva:</label>
+            <input type="date" id="fecha" name="fecha" [(ngModel)]="reservation.fecha" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="hora">Hora de la reserva:</label>
+            <input type="time" id="hora" name="hora" [(ngModel)]="reservation.hora" required>
+        </div>
+
+        <div>
+            <label for="personas">Número de personas:</label>
+            <input type="number" id="personas" name="personas" [(ngModel)]="reservation.personas" required>
+        </div>
+
+        <div>
+            <label for="tipo_mesa">Tipo de mesa:</label>
+            <select id="tipo_mesa" name="tipo_mesa" [(ngModel)]="reservation.tipo_mesa" required>
+                <option value="mesa2">Mesa para 2 personas</option>
+                <option value="mesa4">Mesa para 4 personas</option>
+                <option value="grupo">Mesa para grupo grande</option>
+                <option value="aire_libre">Mesa al aire libre</option>
+            </select>
+        </div>
+        <div>
+            <label for="notas">Notas o comentarios especiales:</label>
+            <textarea id="notas" name="notas" [(ngModel)]="reservation.notas" rows="3" cols="50"></textarea>
+        </div>
+    </form>
+</div>
+<div class="column">
+
+
+    <!-- <div>
+        <label for="estado_reserva">Estado de la reserva:</label>
+        <select id="estado_reserva" name="estado_reserva" [(ngModel)]="reservation.estado_reserva" required>
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="cancelada">Cancelada</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="numero_reserva">Número de reserva:</label>
+        <input type="text" id="numero_reserva" name="numero_reserva" [(ngModel)]="reservation.numero_reserva"
+            required>
+    </div>
+
+    <div>
+        <label for="turno">Turno:</label>
+        <input type="text" id="turno" name="turno" [(ngModel)]="reservation.turno">
+    </div>
+
+    <div>
+        <label for="origen_reserva">Origen de la reserva:</label>
+        <input type="text" id="origen_reserva" name="origen_reserva" [(ngModel)]="reservation.origen_reserva"
+            required>
+    </div> -->
+    <button type="submit">Enviar Reservación</button>
+</div>
