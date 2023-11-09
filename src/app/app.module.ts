@@ -10,6 +10,7 @@ import { ReservacionesComponent } from './reservaciones/reservaciones.component'
 import { PaginaLoginComponent } from './pagina-login/pagina-login.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     ReservacionesComponent,
     PaginaLoginComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
