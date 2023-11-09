@@ -1,0 +1,144 @@
+/*Diseño Tabla*/
+.flex-container {
+    display: flex;
+    padding: 10px;
+    align-content: center;
+    justify-content: center;
+    background-color: white;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#table1 {
+    /*border: 1px solid black;*/
+    /*text-decoration-style: solid;*/
+    margin-left: 40px;
+    padding: 50px;
+}
+
+#td2 {
+    text-align: center;
+    font-size: 25px;
+}
+
+/*Diseño Div*/
+.contenedor-circular {
+    background-color: #086c85;
+    padding: 20px;
+    /* Espaciado interno del contenedor */
+    border-radius: 20px;
+}
+
+/*Diseño P*/
+.mi-parráfo1 {
+    color: #ffffff;
+    text-align: center;
+}
+
+/*Diseño etiqueta P de la Tabla*/
+.mi-parráfo2 {
+    background-color: #f5f2f2;
+    /* Cambia el color de fondo según tus preferencias */
+    padding: 1px;
+    /* Opcional: agregar espaciado interno para separar el contenido del fondo */
+    text-align: center;
+}
+
+/*Diseño etiqueta P de la Tabla*/
+.mi-parráfo3 {
+    background-color: #f5f2f2;
+    /* Cambia el color de fondo según tus preferencias */
+    padding: 10px;
+    /* Opcional: agregar espaciado interno para separar el contenido del fondo */
+    text-align: center;
+}
+
+/*Diseño P footer*/
+.mi-parráfoFooter {
+    text-align: center;
+}
+
+/*Boton*/
+.btn {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #086c85;
+    color: #000000;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn1 {
+    background-color: #086c85;
+    margin: 20px;
+}
+
+.btn1:hover {
+    background-color: #ffffff;
+}
+
+/*Noticias*/
+
+.section2 {
+    display: flex;
+    margin-right: 10%;
+    margin-left: 10%;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+}
+
+article {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+}
+
+.headerNoti {
+    color: white;
+    background-color: #086c85;
+    text-align: center;
+    font-size: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+}
+
+.imgNoti {
+    max-width: 100%;
+}
+
+#articulo-1 {
+    background: white;
+    margin: 1%;
+}
+
+#articulo-2 {
+    background: white;
+    margin: 1%;
+}
+
+#articulo-3 {
+    background: white;
+    margin: 1%;
+}
+
+.btnNoti {
+    border-width: 1px;
+    border-style: solid;
+    color: black;
+    padding: 1px;
+    font-size: 10px;
+    cursor: pointer;
+    left: 80%;
+    top: 15px;
+    position: relative;
+    border-color: transparent;
+    text-align: right;
+}
+
+.btn2 {
+    background-color: transparent;
+}
