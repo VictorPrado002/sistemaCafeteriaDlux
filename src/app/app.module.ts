@@ -9,7 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
 import { PaginaLoginComponent } from './pagina-login/pagina-login.component';
 import { AboutComponent } from './about/about.component';
-import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +19,12 @@ import { FooterComponent } from './footer/footer.component';
     MenuComponent,
     ReservacionesComponent,
     PaginaLoginComponent,
-    AboutComponent,
-    FooterComponent
+    AboutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
