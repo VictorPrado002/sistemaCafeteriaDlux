@@ -1,0 +1,28 @@
+<h2>Formulario de Dirección</h2>
+<form [formGroup]="formularioDireccion">
+  <div>
+    <label>Calle:</label>
+    <input formControlName="calle" />
+  </div>
+  <div>
+    <label>Colonia:</label>
+    <input formControlName="colonia" />
+  </div>
+  <div>
+    <label>Número:</label>
+    <input formControlName="numero" />
+  </div>
+  <div>
+    <label>Municipio:</label>
+    <input formControlName="municipio" />
+  </div>
+  <div>
+    <label>Estado:</label>
+    <input formControlName="estado" />
+  </div>
+
+  <div>
+    <button type="button" (click)="guardarDireccion()">Guardar</button>
+    <button type="button" (click)="cerrarDialogo()">Cerrar</button>
+  </div>
+</form>

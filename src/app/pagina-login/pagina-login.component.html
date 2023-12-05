@@ -1,80 +1,50 @@
-
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
-        <div
-          class="card"
-          style="border-radius: 1rem; border: 5px solid #393f81;"
-        >
+        <div class="card" style="border-radius: 1rem; border: 5px solid #393f81;">
           <div class="row g-0" *ngIf="!registro; else RegistroForm">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img
-                src="assets/images/fondo1.png"
-                alt="login form"
-                class="img-fluid"
-                style="border-radius: 1rem 0 0 1rem;"
-              />
+              <img src="assets/images/fondo1.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
-                <form>
+                <form [formGroup]="formularioSesion">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <div class="col-md-4 imagenLogo">
-                      <img
-                        src="assets/images/logo.png"
-                        class="img-fluid rounded-start"
-                        alt="..."
-                      />
+                      <img src="assets/images/logo.png" class="img-fluid rounded-start" alt="..." />
                     </div>
                     <span class="h1 fw-bold mb-0">Café D'lux</span>
                   </div>
 
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
-                    Ingresa a tu cuenta
-                  </h5>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Ingresa a tu cuenta</h5>
 
                   <div class="form-outline mb-4">
-                    <input
-                      type="email"
-                      id="form2Example17"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label" for="form2Example17"
-                      >Correo</label
-                    >
+                    <input type="email" formControlName="correo" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">Correo</label>
+                    <div *ngIf="formularioSesion.get('correo')?.touched || formularioSesion.get('correo')?.dirty" class="text-danger">
+                      {{ obtenerErrorCampo(formularioSesion, 'correo') }}
+                    </div>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input
-                      type="password"
-                      id="form2Example27"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label" for="form2Example27"
-                      >Password</label
-                    >
+                    <input type="password" formControlName="password" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example27">Password</label>
+                    <div *ngIf="formularioSesion.get('password')?.touched || formularioSesion.get('password')?.dirty" class="text-danger">
+                      {{ obtenerErrorCampo(formularioSesion, 'password') }}
+                    </div>
                   </div>
 
                   <div class="d-grid gap-2">
-                    <button class="btn btn-dark btn-lg btn-block" type="button">
-                      Login
-                    </button>
+                    <button class="btn btn-dark btn-lg btn-block" type="button" (click)="iniciarSesion()">Login</button>
                   </div>
 
-                  <a class="small text-muted" href="#!"
-                    >¿Olvidaste tu contraseña?</a
-                  >
-                  <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                    ¿No tienes una cuenta?
-                    <button
-                      id="btnRegistro"
-                      style="color: #393f81;"
-                      type="button"
-                      (click)="iniciarRegistro()"
-                    >
-                      Registrate aquí
-                    </button>
+                  <a class="small text-muted" href="#">¿Olvidaste tu contraseña?</a>
+                  <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+                    {{ mensajeError }}
+                  </div>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tienes una cuenta?
+                    <button id="btnRegistro" style="color: #393f81;" type="button" (click)="iniciarRegistro()">Registrate aquí</button>
                   </p>
                 </form>
               </div>
@@ -84,123 +54,104 @@
             <div class="card-body py-5 px-md-5" id="divRegistro">
               <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
-                  <h2 class="fw-bold mb-5" id="tituloRegistro" >Registro para Clientes</h2>
-                  <form>
+                  <h2 class="fw-bold mb-5" id="tituloRegistro">Registro para Clientes</h2>
+                  <form [formGroup]="formularioRegistro">
                     <div class="row">
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example1"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="form3Example1"
-                            >Nombre(s)</label
-                          >
+                          <input type="text" formControlName="nombre" class="form-control" />
+                          <label class="form-label" for="form3Example1">Nombre(s)</label>
+                          <div *ngIf="formularioRegistro.get('nombre')?.touched || formularioRegistro.get('nombre')?.dirty" class="text-danger">
+                            {{ obtenerErrorCampo(formularioRegistro, 'nombre') }}
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example2"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="form3Example2"
-                            >Apellido Paterno</label
-                          >
+                          <input type="text" formControlName="apellidoPaterno" class="form-control" />
+                          <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                          <div *ngIf="formularioRegistro.get('apellidoPaterno')?.touched || formularioRegistro.get('apellidoPaterno')?.dirty" class="text-danger">
+                            {{ obtenerErrorCampo(formularioRegistro, 'apellidoPaterno') }}
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-4 mb-4">
                         <div class="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example2"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="form3Example2"
-                            >Apellido Materno</label
-                          >
+                          <input type="text" formControlName="apellidoMaterno" class="form-control" />
+                          <label class="form-label" for="form3Example2">Apellido Materno</label>
+                          <div *ngIf="formularioRegistro.get('apellidoMaterno')?.touched || formularioRegistro.get('apellidoMaterno')?.dirty" class="text-danger">
+                            {{ obtenerErrorCampo(formularioRegistro, 'apellidoMaterno') }}
+                          </div>
                         </div>
                       </div>
                     </div>
+                    
+
                     <div class="row">
+                    
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example1"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="form3Example1"
-                            >Dirección</label
-                          >
+                          <input type="number" formControlName="edad" class="form-control" />
+                          <label class="form-label" for="form3Example1">Edad</label>
+                          <div *ngIf="formularioRegistro.get('edad')?.touched || formularioRegistro.get('edad')?.dirty" class="text-danger">
+                            {{ obtenerErrorCampo(formularioRegistro, 'edad') }}
+                          </div>
                         </div>
                       </div>
+                    
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <input
-                            type="number"
-                            id="form3Example2"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="form3Example2"
-                            >Telefono</label
-                          >
+                          <input type="text" formControlName="telefono" class="form-control" />
+                          <label class="form-label" for="form3Example2">Telefono</label>
+                          <div *ngIf="formularioRegistro.get('telefono')?.touched || formularioRegistro.get('telefono')?.dirty" class="text-danger">
+                            {{ obtenerErrorCampo(formularioRegistro, 'telefono') }}
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <button class="btn btn-primary btn-lg" type="button" (click)="abrirFormularioDireccion()">Agregar Dirección</button>
                         </div>
                       </div>
                     </div>
+                    
+
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="form3Example3"
-                        class="form-control"
-                      />
-                      <label class="form-label" for="form3Example3"
-                        >Correo</label
-                      >
-                    </div>
-
-                    <div class="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form3Example4"
-                        class="form-control"
-                      />
-                      <label class="form-label" for="form3Example4"
-                        >Password</label
-                      >
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4 mx-auto">
-                            <div class="d-grid gap-2">
-
-                                <button
-                                type="submit"
-                                class="btn btn-primary btn-lg "
-                                >
-                                Registrarse
-                            </button>
-                        </div>
-                          </div>
-                          
-                          <div class="col-md-6 mb-4">
-                                  <div class="d-grid gap-2">
-                                  <button 
-                                  type="submit"
-                                  class="btn btn-dark btn-lg "
-                                  >
-                                  Login
-                                </button>
-                            </div>
+                      <input type="email" formControlName="correo" class="form-control" />
+                      <label class="form-label" for="form3Example3">Correo</label>
+                      <div *ngIf="formularioRegistro.get('correo')?.touched || formularioRegistro.get('correo')?.dirty" class="text-danger">
+                        {{ obtenerErrorCampo(formularioRegistro, 'correo') }}
                       </div>
                     </div>
 
-                    
-                   
+                    <div class="form-outline mb-4">
+                      <input type="password" formControlName="password" class="form-control" />
+                      <label class="form-label" for="form3Example4">Password</label>
+                      <div *ngIf="formularioRegistro.get('password')?.touched || formularioRegistro.get('password')?.dirty" class="text-danger">
+                        {{ obtenerErrorCampo(formularioRegistro, 'password') }}
+                      </div>
+                    </div>
+
+                    <!-- Mensaje de error -->
+                    <div *ngIf="mensajeError" class="alert alert-danger mb-3" role="alert">
+                      {{ mensajeError }}
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 mx-auto">
+                        <div class="d-grid gap-2">
+                          <button type="button" class="btn btn-primary btn-lg" (click)="validarRegistro()">Registrarse</button>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                        <div class="d-grid gap-2">
+                          <button type="submit" class="btn btn-dark btn-lg">Login</button>
+                        </div>
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
