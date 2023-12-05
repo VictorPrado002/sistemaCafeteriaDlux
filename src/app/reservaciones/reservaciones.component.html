@@ -5,17 +5,24 @@
         <div>
             <label for="nombre">Nombre del cliente:</label>
             <input type="text" id="nombre" name="nombre" [(ngModel)]="reservation.nombre" required>
-        </div>
+            <!-- Add a span element to display an error message -->
+            <span *ngIf="!validateName(reservation.nombre)">Nombre no válido (solo se permiten letras y espacios)</span>
+          </div>
 
-        <div>
+          <div>
             <label for="telefono">Número de teléfono:</label>
             <input type="tel" id="telefono" name="telefono" [(ngModel)]="reservation.telefono" required>
-        </div>
-
-        <div>
+            <!-- Add a span element to display an error message -->
+            <span *ngIf="!validatePhoneNumber(reservation.telefono)">Número de teléfono no válido</span>
+          </div>
+          
+          <div>
             <label for="email">Correo electrónico:</label>
             <input type="email" id="email" name="email" [(ngModel)]="reservation.email" required>
-        </div>
+            <!-- Add a span element to display an error message -->
+            <span *ngIf="!validateEmail(reservation.email)">Correo electrónico no válido</span>
+          </div>
+          
 
         <div>
             <label for="fecha">Fecha de la reserva:</label>
@@ -31,7 +38,10 @@
         <div>
             <label for="personas">Número de personas:</label>
             <input type="number" id="personas" name="personas" [(ngModel)]="reservation.personas" required>
-        </div>
+            <!-- Add a span element to display an error message -->
+            <span *ngIf="!validateNumberOfPersons(reservation.personas)">Número de personas debe estar entre 1 y 10</span>
+          </div>
+          
 
         <div>
             <label for="tipo_mesa">Tipo de mesa:</label>
