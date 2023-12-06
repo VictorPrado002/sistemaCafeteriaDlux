@@ -22,4 +22,10 @@ export class RegistroService {
   obtenerDetallesUsuario(): Observable<any> {
     return this.http.get(`${this.apiUrl}/usuario`);
   }
+
+  actualizarDatosUsuario(datosActualizados: any): Observable<any> {
+    // Lógica para enviar datos actualizados al servidor
+    // Puedes usar el HttpClient para hacer la solicitud HTTP
+    return this.http.post(`${this.apiUrl}/actualizarDatos`, datosActualizados);
+  }
 }

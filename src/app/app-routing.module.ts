@@ -5,6 +5,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
 import { PaginaLoginComponent } from './pagina-login/pagina-login.component';
 import { AboutComponent } from './about/about.component';
+import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:"reservacion",component:ReservacionesComponent},
   {path:"about",component:AboutComponent},
   {path:"loginPag",component:PaginaLoginComponent},
+  {path:"datos",component:ActualizarDatosComponent},
   {path:"**", pathMatch:"full",redirectTo:"home"}
 ];
 

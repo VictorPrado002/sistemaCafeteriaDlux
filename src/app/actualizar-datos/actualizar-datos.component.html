@@ -1,0 +1,14 @@
+<!-- actualizar-datos.component.html -->
+
+<div class="container">
+    <h2>Actualizar Datos</h2>
+    <form [formGroup]="formularioActualizar" (ngSubmit)="actualizarDatos()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre" />
+        <!-- Agrega otros campos según tus necesidades -->
+      </div>
+      <button type="submit" class="btn btn-primary">Actualizar Datos</button>
+    </form>
+  </div>
+  

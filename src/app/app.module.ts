@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule} from '@angular/common/http';
 import { RegistroService } from './registro.service';
 import { CryptoService } from './crypto.service';
+import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CryptoService } from './crypto.service';
     PaginaLoginComponent,
     AboutComponent,
     FooterComponent,
-    DireccionFormComponent
+    DireccionFormComponent,
+    ActualizarDatosComponent
   ],
   imports: [
     BrowserModule,
