@@ -14,6 +14,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DireccionFormComponent } from './direccion-form/direccion-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule} from '@angular/common/http';
+import { RegistroService } from './registro.service';
+import { CryptoService } from './crypto.service';
 
 @NgModule({
   declarations: [
@@ -33,9 +36,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     FormsModule,
     MatDialogModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [RegistroService, CryptoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

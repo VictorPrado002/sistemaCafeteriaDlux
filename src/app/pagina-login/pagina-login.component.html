@@ -144,6 +144,8 @@
                         <div class="d-grid gap-2">
                           <button type="button" class="btn btn-primary btn-lg" (click)="validarRegistro()">Registrarse</button>
                         </div>
+                        <div *ngIf="mensajeExito" class="mensaje-exito">{{ mensajeExito }}</div>
+                        <div *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</div>
                       </div>
 
                       <div class="col-md-6 mb-4">

@@ -1,28 +1,32 @@
-<h2>Formulario de Dirección</h2>
-<form [formGroup]="formularioDireccion">
-  <div>
-    <label>Calle:</label>
-    <input formControlName="calle" />
-  </div>
-  <div>
-    <label>Colonia:</label>
-    <input formControlName="colonia" />
-  </div>
-  <div>
-    <label>Número:</label>
-    <input formControlName="numero" />
-  </div>
-  <div>
-    <label>Municipio:</label>
-    <input formControlName="municipio" />
-  </div>
-  <div>
-    <label>Estado:</label>
-    <input formControlName="estado" />
-  </div>
-
-  <div>
-    <button type="button" (click)="guardarDireccion()">Guardar</button>
-    <button type="button" (click)="cerrarDialogo()">Cerrar</button>
-  </div>
-</form>
+<section id="divRegistro">
+    <h2 id="tituloRegistro">Dirección:</h2>
+    <form [formGroup]="formularioDireccion">
+      <div>
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle" formControlName="calle" />
+      </div>
+  
+      <div>
+        <label for="colonia">Colonia:</label>
+        <input type="text" id="colonia" formControlName="colonia" />
+      </div>
+  
+      <div>
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" formControlName="numero" />
+      </div>
+  
+      <div>
+        <label for="municipio">Municipio:</label>
+        <input type="text" id="municipio" formControlName="municipio" />
+      </div>
+  
+      <div>
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" formControlName="estado" />
+      </div>
+  
+      <button type="button" (click)="guardarDireccion()">Guardar Dirección</button>
+    </form>
+  </section>
+  
