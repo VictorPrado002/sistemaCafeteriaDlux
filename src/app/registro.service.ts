@@ -15,8 +15,11 @@ export class RegistroService {
   }
 
   iniciarSesion(client: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, client,{ responseType: 'text' });  // Elimina { responseType: 'text' }
-
+    return this.http.post(`${this.apiUrl}/login`, client);
   }
   
+  
+  obtenerDetallesUsuario(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuario`);
+  }
 }

@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { RegistroService } from '../registro.service';
 import { CryptoService } from '../crypto.service';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+import { AuthService } from '../auth-service.service';
+
 @Component({
   selector: 'app-pagina-login',
   templateUrl: './pagina-login.component.html',
@@ -18,8 +21,11 @@ export class PaginaLoginComponent implements OnInit {
   formularioSesion: FormGroup;
   formularioRegistro: FormGroup;
   formularioDireccion: FormGroup;
-
-  constructor(private formBuilder: FormBuilder,public dialog: MatDialog,  private http: HttpClient, private registroService: RegistroService, private cryptoService: CryptoService, private router: Router) {
+  isLoggedIn: boolean = false;
+  currentUser: any;
+  
+  
+  constructor(private authService: AuthService, private cdr: ChangeDetectorRef,private formBuilder: FormBuilder,public dialog: MatDialog,  private http: HttpClient, private registroService: RegistroService, private cryptoService: CryptoService, private router: Router) {
     this.formularioSesion = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
@@ -42,12 +48,31 @@ export class PaginaLoginComponent implements OnInit {
       municipio: ['', Validators.required],
       estado: ['', Validators.required]
     });
+
+    this.authService.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+    });
   }
 
   ngOnInit(): void {
+    // Verificar si el usuario está actualmente autenticado
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+
+      if (this.isLoggedIn) {
+        // Si está autenticado, obtener los detalles del usuario
+        this.authService.currentUser$.subscribe((user) => {
+          this.currentUser = user;
+          console.log('Usuario después del inicio de sesión:', this.currentUser?.nombre);
+        });
+      }
+    });
     this.registro = false;
   }
-
   iniciarRegistro() {
     this.registro = true;
   }
@@ -55,49 +80,21 @@ export class PaginaLoginComponent implements OnInit {
   iniciarSesion() {
     if (this.formularioSesion.valid) {
       this.mensajeError = '';
-      
-      // Obtén los valores del formulario de inicio de sesión
+
       const correo = this.formularioSesion.get('correo')?.value;
       const contrasena = this.formularioSesion.get('password')?.value;
-  
-      // Encripta la contraseña antes de enviarla al servidor
-      this.cryptoService.hashPassword(contrasena).then((hashedPassword) => {
-        const cliente = {
-          correo: correo,
-          contrasena: hashedPassword,
-        };
-        console.log(hashedPassword);
-        console.log(correo);
-        // Realiza la solicitud HTTP al servidor para iniciar sesión
-        this.registroService.iniciarSesion(cliente).subscribe(
-          (response: string) => {
-            console.log('Inicio de sesión exitoso:', response);
-  
-            // Aquí deberías verificar el contenido de la respuesta del servidor
-            if (response === 'Inicio de sesión exitoso') {
-              this.router.navigate(['/home']);
-            } else {
-              this.mensajeError = 'Correo o contraseña incorrectos.';
-            }
-          },
-          (error) => {
-            console.error('Error al iniciar sesión:', error);
-            this.mensajeError = 'Correo o contraseña incorrectos.';
-          }
-        );
-      });
+      console.log(contrasena);
+      // Realizar la solicitud HTTP al servidor para iniciar sesión
+      this.iniciarSesionAutomatico(correo, contrasena);
     } else {
       this.mensajeError = 'Por favor, completa los campos correctamente.';
     }
   }
-  
-  
 
   validarRegistro() {
     if (this.formularioRegistro.valid && this.formularioDireccion.valid) {
       this.mensajeError = '';
-  
-      // Verifica si los controles no son nulos antes de acceder a sus valores
+
       const cliente = {
         nombre: this.formularioRegistro.get('nombre')?.value,
         apellidoPaterno: this.formularioRegistro.get('apellidoPaterno')?.value,
@@ -105,17 +102,20 @@ export class PaginaLoginComponent implements OnInit {
         edad: this.formularioRegistro.get('edad')?.value,
         telefono: this.formularioRegistro.get('telefono')?.value,
         correo: this.formularioRegistro.get('correo')?.value,
-        contrasena: this.formularioRegistro.get('password')?.value,
+        contrasena: this.formularioRegistro.get('password')?.value,  // No es necesario encriptar aquí
         direccion: this.formularioDireccion.value
       };
-  
-      // Utiliza el servicio para realizar la solicitud HTTP al servidor Node.js
+
+      // Enviar la solicitud HTTP al servidor para registrar al cliente
       this.registroService.registrarCliente(cliente).subscribe(
         (response) => {
           console.log('Cliente registrado con éxito:', response);
           if (response.includes('Cliente registrado exitosamente')) {
             this.mensajeExito = 'Cliente registrado exitosamente';
-            this.mensajeError = ''; // Limpiar el mensaje de error
+            this.mensajeError = '';
+
+            // Iniciar sesión automáticamente después de registrar al cliente
+            this.iniciarSesionAutomatico(cliente.correo, cliente.contrasena);
           } else {
             console.error('Respuesta inesperada del servidor:', response);
             this.mensajeError = 'Error al registrar cliente.';
@@ -126,12 +126,53 @@ export class PaginaLoginComponent implements OnInit {
           this.mensajeError = 'Error al registrar cliente.';
         }
       );
-      
-      
     } else {
       this.mensajeError = 'Por favor, completa los campos correctamente.';
     }
   }
+
+  private iniciarSesionAutomatico(correo: string, contrasena: string) {
+    // Encripta la contraseña antes de enviarla al servidor
+    
+      const cliente = {
+        correo: correo,
+        contrasena: contrasena, // Aquí la contraseña ya está encriptada
+      };
+     console.log(contrasena);
+      // Realizar la solicitud HTTP al servidor para iniciar sesión
+      this.registroService.iniciarSesion(cliente).subscribe(
+        (response: any) => {
+          console.log('Inicio de sesión exitoso:', response);
+          
+          // Verifica la respuesta del servidor
+          if (response.message === 'Inicio de sesión exitoso') {
+            // Actualiza el estado de inicio de sesión
+            this.isLoggedIn = true;
+            const usuario = {
+              nombre: response.nombre,
+              // ... otras propiedades del usuario
+            };
+            this.authService.login(response.nombre);
+
+        // Redirige a la página de inicio
+        console.log('Usuario después del inicio de sesión:', response.nombre);
+
+            //this.authService.login(usuario);
+            this.cdr.detectChanges();
+
+            // Redirige a la página de inicio
+            this.router.navigate(['/home']);
+          } else {
+            this.mensajeError = 'Correo o contraseña incorrectos.';
+          }
+        },
+        (error) => {
+          console.error('Error al iniciar sesión:', error);
+          this.mensajeError = 'Correo o contraseña incorrectos.';
+        }
+      );
+    };
+
   
 
   obtenerErrorCampo(formulario: FormGroup, campo: string): string {

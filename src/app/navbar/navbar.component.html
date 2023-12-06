@@ -40,13 +40,16 @@
             <a class="nav-link" aria-current="page" [routerLink]="['about']"
               >About</a
             >
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" aria-current="page" [routerLink]="['loginPag']"
-              >Log in
-              </a
-            >
-          </li>
+            <li class="nav-item" routerLinkActive="active">
+              <!-- Mostrar el nombre del cliente o el botón de inicio de sesión -->
+              <ng-container *ngIf="isLoggedIn; else loginButton">
+                <a class="nav-link" aria-current="page">{{ currentUser?.nombre }}</a>
+                <button class="btn btn-link" (click)="logout()">Cerrar sesión</button>
+              </ng-container>
+              <ng-template #loginButton>
+                <a class="nav-link" aria-current="page" [routerLink]="['loginPag']">Log in</a>
+              </ng-template>
+            </li>
         </ul>
   
         <form class="d-flex" role="search">
